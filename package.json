@@ -1,0 +1,28 @@
+{
+  "name": "reybot",
+  "version": "1.0.0",
+  "description": "A simple Discord bot created to help Reysic learn to make Discord bots!",
+  "main": "bot.js",
+  "author": "Reysic",
+  "dependencies": {
+    "discord.js": "^11.4.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "10.8.0",
+    "npm": "6.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reysic/Reybot.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Reysic/Reybot/issues"
+  },
+  "homepage": "https://github.com/Reysic/Reybot#readme"
+}
