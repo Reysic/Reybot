@@ -9,7 +9,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 // Import config.js (holds token and command prefix)
-const config = require('./config.json');
+// const config = require('./config.json');
 
 // Import the fs native module
 const fs = require('fs');
@@ -34,9 +34,11 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', message => {
   // Return early is command prefix is not present or the message author is another bot (prevent botception)
-  if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+  // if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+  if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
 
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  // const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(process.env.prefix.length).trim().split(/ +/g);
   // shift() removes one element from the array and returns it
   const command = args.shift().toLowerCase();
 
@@ -48,21 +50,25 @@ client.on('message', message => {
   // Prefix-changing command
   if (command === "prefix") {
     // Protected, must be owner to execute
-    if (message.author.id != config.ownerID) {
+    // if (message.author.id != config.ownerID) {
+    if (message.author.id != process.env.ownerID) {
       message.channel.send("Sorry, you're not permitted to run that command.");
       return;
     } else {
       // Gets the prefix from the command (e.g. "!prefix +" will have the "+" taken from it)
       let newPrefix = message.content.split(" ".slice(1, 2)[0]);
       // Change the configuration in memory
-      config.prefix = newPrefix;
+      // config.prefix = newPrefix;
+      process.env.prefix = newPrefix;
       // Save the configuration to the file
-      fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
+      // fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
       // Notify the user
-      message.channel.send("Command prefix succesfully changed to: " + config.prefix)
+      // message.channel.send("Command prefix succesfully changed to: " + config.prefix)
+      message.channel.send("Command prefix succesfully changed to: " + process.env.prefix)
     }
   }
 });
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
-client.login(config.token);
+// client.login(config.token);
+client.login(process.env.token);
