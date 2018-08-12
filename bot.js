@@ -67,6 +67,12 @@ client.on('message', message => {
       message.channel.send("Command prefix succesfully changed to: " + process.env.prefix)
     }
   }
+
+  // !user
+  if (command === "user") {
+    let member = message.mentions.members.first();
+    message.channel.send(".displayName: ${member.displayName}, .id: ${member.id}, .nickname: {$member.nickname}, .joinedAt: {$member.joinedAt}")
+  }
 });
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
