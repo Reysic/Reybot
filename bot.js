@@ -9,7 +9,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 // Import config.js (holds token and command prefix)
-const config = require('./config.json');
+// const config = require('./config.json');
 
 // Import the fs native module
 const fs = require('fs');
@@ -34,11 +34,11 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', message => {
   // Return early is command prefix is not present or the message author is another bot (prevent botception)
-  if (!message.content.startsWith(config.prefix) || message.author.bot) return;
-  // if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
+  // if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+  if (!message.content.startsWith(process.env.prefix) || message.author.bot) return;
 
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  // const args = message.content.slice(process.env.prefix.length).trim().split(/ +/g);
+  // const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(process.env.prefix.length).trim().split(/ +/g);
   // shift() removes one element from the array and returns it
   const command = args.shift().toLowerCase();
 
@@ -76,5 +76,5 @@ client.on('message', message => {
 });
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
-client.login(config.token);
-// client.login(process.env.token);
+// client.login(config.token);
+client.login(process.env.token);
