@@ -64,14 +64,14 @@ client.on('message', message => {
       // fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
       // Notify the user
       // message.channel.send("Command prefix succesfully changed to: " + config.prefix)
-      message.channel.send("Command prefix succesfully changed to: " + process.env.prefix)
+      message.channel.send("Command prefix succesfully changed to: " + process.env.prefix);
     }
   }
 
   // !user
   if (command === "user") {
     let member = message.mentions.members.first();
-    message.channel.send(".displayName: ${member.displayName}, .id: ${member.id}, .nickname: {$member.nickname}, .joinedAt: {$member.joinedAt}")
+    message.channel.send(".displayName: ${member.displayName}, .id: ${member.id}, .nickname: {$member.nickname}, .joinedAt: {$member.joinedAt}");
   }
 });
 
