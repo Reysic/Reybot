@@ -1,5 +1,8 @@
 // !urban
+const Discord = require('discord.js');
 const snekfetch = require('snekfetch');
+
+const trim = (str, max) => (str.length > max) ? `${str.slice(0, max - 3)}...` : str;
 
 exports.run = urban;
 
